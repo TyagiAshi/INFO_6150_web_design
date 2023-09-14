@@ -1,0 +1,298 @@
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.container{
+    background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2)
+    ), url(images/Nightsky.jpg);
+    width: 100%;
+    height:  100vh;
+    background-position: center;
+    background-size: cover;
+    padding-left: 6%;
+    padding-right: 6%;
+    box-sizing: border-box;
+}
+.navbar{
+    height: 12%;
+    display: flex;
+
+    align-items: center;
+}
+.logo{
+    width: 50px;
+    cursor: pointer;
+}
+.menu-icon{
+    width: 30px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+nav{
+    flex: 1;
+    text-align: right;
+}
+nav ul li{
+    list-style: none;
+    display: inline;
+    margin-left: 50px;
+}
+nav ul li:hover{
+    background: #8f8f8f;
+    color: #fff;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #d8f9f2ac;
+    font-size: 15px;
+}
+
+.header{
+margin-top: 30%;
+text-align: center;
+font-size: 80px;
+color: rgb(195, 211, 227);
+font-family: Georgia, 'Times New Roman', Times, serif;
+margin-right: 40px;
+}
+
+p {
+    padding: 7px;
+    text-align: justify;
+}
+
+.leftHeaderDiv {
+    width: 45%;
+    float: left;
+}
+
+.rightHeaderDiv {
+    width: 55%;
+    float: right;
+}
+
+.fill {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 940px;
+    border-radius: 25px;
+}
+
+.fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}
+
+.search {
+    margin-top: 8%;
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid #068a70;
+    border-right: none;
+    padding: 5px;
+    height: 45px;
+    border-radius: 15px 0px 0px 15px;
+    outline: none;
+    color: #9DBFAF;
+    font-size: 15px;
+}
+
+
+
+.searchButton {
+    width: 50px;
+    height: 46px;
+    border: 1px solid #068a70;
+    background: #068a70;
+    color: #fff;
+    border-radius: 0px 15px 15px 0px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 20%;
+}
+
+.searchIcon{
+height: 80%;
+color: aliceblue;
+}
+
+
+.container2 {
+    background-image: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.2),
+            rgba(0, 0, 0, 0.2)), url(images/Background.jpg);
+    width: 100%;
+    height: 150vh;
+    background-position: center;
+    background-size: cover;
+    padding-left: 6%;
+    padding-right: 6%;
+    box-sizing: border-box;
+}
+
+
+
+.column {
+    float: left;
+    width: 25%;
+    padding: 5% 0%;
+}
+
+.row {
+    margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 10%;
+    }
+}
+
+/* Style the counter cards */
+.card {
+    width: 90%;
+        height: 350px;
+        display: inline-block;
+        border-radius: 10px;
+        padding: 10px 25px;
+        box-sizing: border-box;
+        cursor: pointer;
+        margin: 5px 15px;
+        background-color: rgba(3, 27, 34, 0.975);
+        background-position: center;
+        background-size: cover;
+}
+
+.HeaderImgCard{
+    margin-top: 10%;
+    max-width: 100%;
+        max-height: 100%;
+        display: block;
+        border-radius: 20px;
+}
+
+.imgCard{
+    max-width: 100%;
+    max-height: 40%;
+    display: block;
+    border-radius: 20px;
+    
+}
+
+.cardViewHeader{
+margin-bottom: 20px;
+color: #8f8f8f;
+font-size: 30px;
+text-align: center;
+}
+
+.cardViewDes{
+    margin-top: 20px;
+font-size: 20px;
+color: #fff;
+text-align: center;
+
+}
+
+menuitem{
+    display: block;
+    font-size: 20px;
+    color: #fff;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.leftArticleDiv {
+    width: 50%;
+    float: left;
+    
+}
+
+.rightArticleDiv {
+    width: 50%;
+    float: right;
+}
+.card:hover{
+    transform:  translate(-10px);
+}
+
+.card1 {
+    width: 400px;
+    height: 300px;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 5px 5px;
+    background-color: rgba(3, 27, 34, 0.975);
+    background-position: center;
+
+
+}
+
+.column1 {
+    width: 100%;
+    margin: 0px;
+}
+
+.column2 {
+    margin-right: 100px;
+    width: 50%;
+    margin: 0px;
+}
+
+.row2 {
+    margin-left: 10%;
+
+}
+
+
+
+footer {
+    background-color: black;
+    color: white;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+}
+
+.footerNewletter{
+    
+    font-size: large;
+    text-align: center;
+}
+
+.formElements{
+    font-size: large;
+        text-align: center;
+}
+
+
+
