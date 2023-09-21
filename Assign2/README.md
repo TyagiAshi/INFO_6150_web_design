@@ -25,7 +25,7 @@ considered while grading.
 
 Solution:
 
-In Aissignment 2 of Web Design and User Experience Engineering class I have used CSS external file for my styling and design. I have used HTML and HTML5 tags respectively. I have also used column layout structure for my professional portfolio website.
+In Assignment 2 of Web Design and User Experience Engineering class I have used CSS external file for my styling and design. I have used HTML and HTML5 tags respectively. I have also used column layout structure for my professional portfolio website.
 
 I have used header, footer, body, main and div tags. Also I have used p, ul, li tags for respective content. I have hyperlinked my website with my current and previous work website. I have also linked my website with my current and previous educational institution.
 
