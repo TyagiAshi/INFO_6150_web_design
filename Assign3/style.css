@@ -1,0 +1,30 @@
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+header {  
+	color: #100f0c; 
+	font-size: 250%;
+  text-align: center;
+	padding: 10px 10px 10px 10px; 
+	height: 35px; 
+}
+
+.socialmediaicons ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socialmediaicons ul li {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.socialmediaicons ul li img {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.socialmediaicons{
+	text-align: center;
+}
