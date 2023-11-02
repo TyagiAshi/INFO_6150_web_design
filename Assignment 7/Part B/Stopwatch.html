@@ -1,0 +1,265 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+    <title>Assignment 7 Part B</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      #container {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: 800px;
+        margin: auto;
+        background-color: rgba(29, 93, 230, 0.892);
+      }
+
+      .date-picker {
+        width: 200px;
+        margin: 100px;
+      }
+
+      .label {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .action-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      #stop-button {
+        background-color: #e74c3c;
+      }
+
+      #stopwatch span {
+        display: inline-block;
+        min-width: 100px;
+      }
+      main {
+        padding: 40px;
+      }
+      body {
+        text-align: center;
+      }
+
+      #stopwatch {
+        font-size: 100px;
+        font-weight: 500;
+      }
+
+      #stopwatch span {
+        display: inline-block;
+        min-width: 100px;
+      }
+
+      button {
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.2s;
+        cursor: pointer;
+        background-color: rgb(249, 249, 26);
+        color: black;
+        border: 2px solid #8c7e7e;
+      }
+      button:hover {
+        background-color: #3df8629f;
+        color: white;
+      }
+
+      .date-btn {
+        outline: none;
+        border: 1px solid;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="stopwatch-container">
+      <label id="stopwatch">00:00:00</label>
+      <input type="datetime-local" id="date-picker" class="date-picker" />
+      <div class="button-container">
+        <button id="start-button" class="action-button">Start</button>
+        <button id="stop-button" class="action-button">Stop</button>
+        <button id="reset-button" class="action-button">Reset</button>
+      </div>
+    </div> -->
+    <div id="container">
+      <main>
+        <h2 style="text-align: center">Assignment 7: Part B</h2>
+        <h3 style="text-align: center">Kindly use the Stop Watch</h3>
+        <fieldset>
+          <legend style="text-align: left">Stop Watch</legend>
+          <br />
+          <label id="stopwatch"
+            ><span id="hours">00</span>:<span id="minutes">00</span>:<span
+              id="seconds"
+              >00</span
+            ></label
+          >
+          <div id="text-center" class="button-container">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+          </div>
+          <!-- <input
+            type="datetime-local"
+            id="datePicker"
+            class="date-picker"
+            max="9999-12-31T23:59"
+          /> -->
+          <!-- <div class="button-container">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+      </div> -->
+        </fieldset>
+      </main>
+      <input type="button" class="date-btn" id="datepicker" />
+    </div>
+    <!-- <script src="script.js"></script> -->
+    <script>
+      $(function () {
+        var date = moment();
+
+        var currentDate = date.format("MM/DD/YYYY");
+        console.log(currentDate);
+        $("#datepicker").val(currentDate);
+        $("#datepicker").datepicker();
+      });
+      const stopwatchLabel = document.getElementById("stopwatch");
+      //const datePicker = document.getElementById("datePicker");
+      const startButton = document.getElementById("start");
+      const stopButton = document.getElementById("stop");
+      const resetButton = document.getElementById("reset");
+      let startTime = 0;
+      let interval;
+
+      // Function to update the stopwatch display
+      const updateStopwatch = () => {
+        const currentTime = new Date(Date.now() - startTime);
+        const hours = String(currentTime.getUTCHours()).padStart(2, "0");
+        const minutes = String(currentTime.getUTCMinutes()).padStart(2, "0");
+        const seconds = String(currentTime.getUTCSeconds()).padStart(2, "0");
+        stopwatchLabel.textContent = `${hours}:${minutes}:${seconds}`;
+      };
+
+      // Function to start the stopwatch
+      //   const startStopwatch = () => {
+      //     if (!interval) {
+      //       startTime = Date.now() - (startTime || Date.now());
+      //       interval = setInterval(updateStopwatch, 1000);
+      //     }
+      //   };
+
+      const startStopwatch = () => {
+        return new Promise((resolve) => {
+          if (!interval) {
+            interval = setInterval(updateStopwatch, 1000);
+            startTime = Date.now() - startTime;
+            resolve();
+          }
+        });
+      };
+
+      // Function to pause the stopwatch
+      const pauseStopwatch = () => {
+        if (interval) {
+          clearInterval(interval);
+          interval = null;
+        }
+      };
+
+      // Function to reset the stopwatch
+      //   const resetStopwatch = () => {
+      //     clearInterval(interval);
+      //     interval = null;
+      //     startTime = 0;
+      //     stopwatchLabel.textContent = "00:00:00";
+      //   };
+      const resetStopwatch = () => {
+        return new Promise((resolve) => {
+          clearInterval(interval);
+          interval = null;
+          startTime = 0;
+          stopwatchLabel.textContent = "00:00:00";
+          resolve();
+        });
+      };
+
+      // Function to handle date picker changes
+      //   const handleDatePickerChange = () => {
+      //     const selectedDate = new Date(datePicker.value);
+      //     const currentDate = new Date();
+
+      //     if (selectedDate <= currentDate) {
+      //       resetStopwatch();
+      //     } else {
+      //       alert("Please select a future date.");
+      //       datePicker.valueAsDate = currentDate;
+      //     }
+      //   };
+      // const handleDatePickerChange = () => {
+      //   const selectedDate = new Date(datePicker.value);
+      //   const currentDate = new Date();
+
+      //   if (selectedDate > currentDate) {
+      //     resetStopwatch();
+      //     return;
+      //   }
+
+      //   alert("Please select a future date.");
+      //   datePicker.valueAsDate = currentDate;
+      // };
+
+      startButton.addEventListener("click", () => {
+        startStopwatch();
+      });
+
+      stopButton.addEventListener("click", () => {
+        pauseStopwatch();
+      });
+
+      //   resetButton.addEventListener("click", () => {
+      //     resetStopwatch();
+      //   });
+
+      resetButton.addEventListener("click", async () => {
+        await resetStopwatch();
+      });
+
+      // datePicker.addEventListener("change", () => {
+      //   handleDatePickerChange();
+      // });
+      // const currentDate = new Date();
+      // const currentDateString = currentDate.toISOString().slice(0, 16);
+      // datePicker.value = currentDateString;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Assignment 7 Part A</title>
+    <style>
+      #container {
+        font-family: Verdana, Geneva, Tahoma, sans-serif-serif;
+        width: 800px;
+        margin: auto;
+        background-color: rgba(29, 93, 230, 0.892);
+      }
+      main {
+        padding: 40px;
+      }
+      .button {
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.2s;
+        cursor: pointer;
+        background-color: rgb(249, 249, 26);
+        color: black;
+        border: 2px solid #8c7e7e;
+      }
+      .button:hover {
+        background-color: #3df863;
+        color: white;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #1b237b;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+      }
+
+      input[type="text"]:focus {
+        border: 3px solid #882c2c;
+      }
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #1b237b;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+      }
+
+      .errors {
+        color: red;
+        background-color: #acf;
+      }
+
+      .error-message {
+        color: red; /* Set the desired color */
+        /* Add more styles as needed */
+      }
+
+      input[type="password"]:focus {
+        border: 3px solid #882c2c;
+      }
+
+      .transparent-button {
+        opacity: 0.5; /* Adjust the opacity value as needed */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <main>
+        <h2 style="text-align: center">Assignment 7: Part A</h2>
+        <h3 style="text-align: center">Kindly Fill in the details below!</h3>
+        <fieldset>
+          <form id="myForm" action="./calculator.html" method="GET">
+            <p>
+              <label>Email Id:</label>
+              <input
+                type="text"
+                id="emailId"
+                name="emailId"
+                placeholder="name@northeastern.edu"
+              />
+            </p>
+
+            <label for="userName">User Name:</label>
+            <input
+              type="text"
+              name="userName"
+              id="userName"
+              placeholder="Enter Your Username"
+            />
+            <br /><br />
+
+            <label for="password">Password:</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter Your Password"
+            />
+            <br /><br />
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input
+              type="password"
+              name="confirm_password"
+              id="confirm_password"
+              placeholder="Enter Your Password"
+            />
+            <br /><br />
+            <input
+              type="submit"
+              value="Login"
+              class="button transparent-button"
+              id="loginButton"
+              disabled
+            />
+
+            <br /><br />
+          </form>
+        </fieldset>
+      </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <!-- <script type="text/javascript" src="jquery.redirect.min.js"></script> -->
+    <script>
+      $(document).ready(function () {
+        $('form[id="myForm"]').validate({
+          // in 'rules' user have to specify all the constraints for respective fields
+          errorClass: "errors",
+          rules: {
+            emailId: {
+              required: true,
+              northeasternEmail: true,
+            },
+            userName: {
+              required: true,
+              minlength: 3, //for length of lastname
+              userNameRegex: true,
+            },
+            password: {
+              required: true,
+              minlength: 8,
+              passwordRegex: true,
+            },
+            confirm_password: {
+              required: true,
+              minlength: 8,
+              equalTo: "#password",
+            },
+          },
+          // in 'messages' user have to specify message as per rules
+          messages: {
+            emailId: {
+              required: "Kindly enter a Email Id",
+            },
+            userName: {
+              required: " Kindly enter a username",
+              minlength:
+                " Username entered must consist of at least 3 characters",
+            },
+            password: {
+              required: " Kindly enter a password",
+              minlength:
+                " Password entered must be consist of at least 8 characters",
+            },
+            confirm_password: {
+              required: " Kindly enter a password",
+              minlength:
+                " Password entered must be consist of at least 8 characters",
+              equalTo: "Your passwords do not match",
+            },
+          },
+
+          // submitHandler: function (form) {
+          //   $("#loginButton").prop("disabled", false); // Enable the button
+          //   $("#loginButton").removeClass("transparent-button"); // Remove the transparent class
+          //   form.submit(); // Submit the form
+          // },
+          // highlight: function (element) {
+          //   $(element).parent().addClass("error");
+          // },
+          // unhighlight: function (element) {
+          //   $(element).parent().removeClass("error");
+          // },
+        });
+
+        $("#loginButton").prop("disabled", true);
+        $('form[id="myForm"]').on("input", function () {
+          if ($(this).valid()) {
+            $("#loginButton").prop("disabled", false); // Enable the button
+            $("#loginButton").removeClass("transparent-button"); // Remove the transparent class
+          } else {
+            $("#loginButton").prop("disabled", true); // Disable the button
+            $("#loginButton").addClass("transparent-button"); // Add the transparent class
+          }
+        });
+      });
+
+      jQuery.validator.addMethod(
+        "northeasternEmail",
+        function (value, element) {
+          return this.optional(element) || /^.+@northeastern.edu$/.test(value);
+        },
+        "<span class='error-message'>Kindly enter valid email id only '@northeastern.edu' email addresses</span>"
+      );
+      jQuery.validator.addMethod(
+        "userNameRegex",
+        function (value, element) {
+          return (
+            this.optional(element) ||
+            /^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(
+              value
+            )
+          );
+        },
+        "<span class='error-message'>Kindly enter valid username</span>"
+      );
+      jQuery.validator.addMethod(
+        "passwordRegex",
+        function (value, element) {
+          return (
+            this.optional(element) ||
+            /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/.test(value)
+          );
+        },
+        "<span class='error-message'>Passwords must consist 8-16 characters with uppercase letters, lowercase letters and at least one number </span>"
+      );
+    </script>
+  </body>
+</html>
